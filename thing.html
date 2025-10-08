@@ -1,0 +1,50 @@
+<html>
+    <head></head>
+    <body>
+        <p id="clicks">Clicks: 0</p>
+        <p id="money">Money: $0</p>
+        <p id="girl"></p>
+        <p>99% chance of getting 1 million dollars</p>
+        <p>1% chance of becoming girl</p>
+        <button id="button">Click Here</button>
+        <style>
+            #girl {
+                color: hotpink
+            }
+        </style>
+        <script type="text/javascript">
+            var girlvar = false
+            var girlcount = 0
+            var clicks = 0
+            var girlclicks = []
+            var girlphrases = ["You're girlin' it up!", "What a gal!", "Femininity Affirmed!"]
+            var money = 0
+            document.querySelector("#button").onclick = function () {
+                var rand = Math.floor(Math.random() * 100) + 1
+                clicks++
+                if (rand == 100) {
+                    if (girlcount == 0) {
+                        document.querySelector("#girl").innerText = "You are a girl!"
+                        girlvar = true
+                    } else if (girlcount == 1) {
+                        document.querySelector("#girl").innerText = "You are still a girl!"
+                    } else {
+                        if (girlphrases.length > 0) {
+                            var index = Math.floor(Math.random()*girlphrases.length)
+                            document.querySelector("#girl").innerText = girlphrases[index]
+                            girlphrases.length > 1 ? girlphrases.splice(index, index) : girlphrases.shift()
+                        } else {
+                            document.querySelector("#girl").innerText = `${girlcount + 1}x girl combo!`
+                        }
+                    }
+                    girlcount++
+                    girlclicks.push(clicks)
+                } else {
+                    money++
+                    document.querySelector("#money").innerText = `Money: $${money} million`
+                }
+                document.querySelector("#clicks").innerText = `Clicks: ${clicks}`
+            }
+        </script>
+    </body>
+</html>
